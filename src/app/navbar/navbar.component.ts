@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  brand: string = "Angular currency converter";
+  brand: string = "Konwerter walut";
   
   constructor() {}
 }

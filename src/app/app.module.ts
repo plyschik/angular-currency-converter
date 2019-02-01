@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,6 +9,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { BoardPageComponent } from './board-page/board-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MaskDirective } from './mask.directive';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,14 @@ import { NavbarComponent } from './navbar/navbar.component';
     MainPageComponent,
     AboutPageComponent,
     BoardPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    MaskDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
