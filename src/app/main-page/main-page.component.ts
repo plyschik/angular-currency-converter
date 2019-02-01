@@ -12,7 +12,7 @@ export class MainPageComponent implements OnInit {
   loading: boolean;
   availableCurrencies: Object[];
   selectedBaseCurrency: string = 'PLN';
-  moneyAmount: number = 1;
+  moneyAmount: string = '1';
   searchPhrase: string;
   rates: Currency[];
   filteredRates: Currency[];
@@ -41,6 +41,29 @@ export class MainPageComponent implements OnInit {
       this.filteredRates = this.rates;
       this.loading = false;
     });
+  }
+
+  validateNumber(event: any) {
+    return false;
+    
+    const pattern = /^\d+([.]\d{1,2})?$/;
+
+    if (!pattern.test(event.target.value)) {
+      event.preventDefault();
+    }
+
+    // event = (event) ? event : window.event;
+    // let charCode = (event.which) ? event.which : event.keyCode;
+    
+    // if (charCode == 46) {
+    //   return true;
+    // }
+    
+    // if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    //   return false;
+    // }
+
+    // return true;
   }
 
   searchPhraseChange() {
