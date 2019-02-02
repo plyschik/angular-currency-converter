@@ -1,34 +1,42 @@
 export default [
     {
         'code': 'PLN',
-        'name': 'Złoty polski'
+        'name': 'Złoty polski',
+        'country_code': 'pl'
     },
     {
         'code': 'EUR',
-        'name': 'Euro'
+        'name': 'Euro',
+        'country_code': 'eu'
     },
     {
         'code': 'USD',
-        'name': 'Dolar amerykański'
+        'name': 'Dolar amerykański',
+        'country_code': 'us'
     },
     {
         'code': 'GBP',
-        'name': 'Funt brytyjski'
+        'name': 'Funt brytyjski',
+        'country_code': 'gb'
     },
     {
         'code': 'RUB',
-        'name': 'Rubel'
+        'name': 'Rubel',
+        'country_code': 'ru'
     },
     {
         'code': 'CHF',
-        'name': 'Frank szwajcarski'
+        'name': 'Frank szwajcarski',
+        'country_code': 'ch'
     },
     {
         'code': 'NOK',
-        'name': 'Korona norweska'
+        'name': 'Korona norweska',
+        'country_code': 'no'
     },
     {
         'code': 'SEK',
-        'name': 'Korona szwecka'
+        'name': 'Korona szwecka',
+        'country_code': 'se'
     }
 ];
