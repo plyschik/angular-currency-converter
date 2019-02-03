@@ -16,7 +16,6 @@ export class ConverterFormComponent implements OnInit {
 
   currencies: Currency[];
   baseCurrency: string = 'PLN';
-  //moneyAmountInput: string = '1';
 
   constructor(private currencyService: CurrencyService) {}
 

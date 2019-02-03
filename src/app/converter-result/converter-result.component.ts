@@ -15,8 +15,8 @@ export class ConverterResultComponent implements OnInit {
   @Input() selectedBaseCurrency: Currency
   @Input() moneyAmount: string;
 
-  rates: Rate[];
-  filteredRates: Rate[];
+  rates: Rate[] = [];
+  filteredRates: Rate[] = [];
   searchPhrase: string;
 
   constructor(

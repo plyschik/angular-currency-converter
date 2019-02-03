@@ -9,28 +9,38 @@
         (input)="searchPhraseChange()"
       >
     </li>
-    <li class="list-group-item" *ngIf="!filteredRates.length">
+    <li class="list-group-item" *ngIf="!filteredRates.length > 0">
       Brak elementów spełniających kryteria wyszukiwania.
     </li>
     <li class="list-group-item" *ngFor="let rate of filteredRates">
-      <div class="row">
-        <div class="col">
+      <div class="row align-items-center">
+        <div class="col d-none d-sm-block">
           <div class="d-flex align-items-center">
-            <img class="flag flag-{{ rate.currency[0].country.code }} mr-2" src="assets/blank.gif">
-            {{ rate.currency[0].code }} ({{ rate.currency[0].name }})
+            <img class="flag flag-{{ rate.currency[0].country.code }} d-none d-sm-block mr-2" src="assets/blank.gif" title="{{ rate.currency[0].country.name }}">
+            <div class="d-none d-lg-block">
+              {{ rate.currency[0].name }}
+              <span class="d-none d-xl-inline">({{ rate.currency[0].code }})</span>
+            </div>
           </div>
         </div>
-        <div class="col text-right">
-          {{ (moneyAmount * rate.value).toFixed(2) }} {{ rate.currency[0].code }}
+        <div class="col text-center text-md-right">
+          {{ (moneyAmount * rate.value).toFixed(2) }}
+          <div class="w-100 d-sm-none"></div>
+          {{ rate.currency[0].code }}
         </div>
         <div class="col-1 text-center">=</div>
-        <div class="col text-left">
-          {{ moneyAmount }} {{ selectedBaseCurrency[0].code }}
+        <div class="col text-center text-md-left">
+          {{ moneyAmount }}
+          <div class="w-100 d-sm-none"></div>
+          {{ selectedBaseCurrency[0].code }}
         </div>
-        <div class="col">
+        <div class="col d-none d-sm-block">
           <div class="d-flex justify-content-end align-items-center">
-            {{ selectedBaseCurrency[0].code }} ({{ selectedBaseCurrency[0].name }})
-            <img class="flag flag-{{ selectedBaseCurrency[0].country.code }} ml-2" src="assets/blank.gif">
+            <div class="d-none d-lg-block">
+              {{ selectedBaseCurrency[0].name }}
+              <span class="d-none d-xl-inline">({{ selectedBaseCurrency[0].code }})</span>
+            </div>
+            <img class="flag flag-{{ selectedBaseCurrency[0].country.code }} d-none d-sm-block ml-2" src="assets/blank.gif" title="{{ selectedBaseCurrency[0].country.name }}">
           </div>
         </div>
       </div>
