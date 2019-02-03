@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <div class="form-row">  
+      <div class="col-3 mb-0 form-group">
+        <label for="base-currency">Waluta bazowa:</label>
+        <select
+          class="form-control"
+          id="base-currency"
+          [(ngModel)]="baseCurrency"
+          (change)="changeBaseCurrency()"
+          [disabled]="loading"
+        >
+          <option
+            *ngFor="let currency of currencies"
+            [value]="currency.code"
+          >
+            {{ currency.name }} ({{ currency.code }})
+          </option>
+        </select>
+      </div>
+      <div class="col-9 mb-0 form-group">
+        <label for="currency-amount">Ilość pieniędzy:</label>
+        <input
+          class="form-control"
+          id="currency-amount"
+          type="text"
+          [(ngModel)]="moneyAmount"
+          (ngModelChange)="moneyAmountInputChange()"
+          [disabled]="loading"
+          [mask]="'^[1-9]{1}[0-9]{0,5}$'"
+        >
+      </div>
+    </div>
+  </div>
+</div>

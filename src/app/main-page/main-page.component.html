@@ -1,81 +1,13 @@
-<div class="card">
-  <div class="card-body">
-    <div class="form-row">  
-      <div class="col-3 form-group mb-0">
-        <label for="baseCurrency">Waluta bazowa:</label>
-        <select
-          class="form-control"
-          id="baseCurrency"
-          [(ngModel)]="rawSelectedBaseCurrency"
-          (change)="changeBaseCurrency()"
-          [disabled]="loading"
-        >
-          <option
-            *ngFor="let currency of availableCurrencies"
-            [value]="currency.code"
-          >
-            {{ currency.name }} ({{ currency.code }})
-          </option>
-        </select>
-      </div>
-      <div class="col-9 form-group mb-0">
-        <label for="currencyAmount">Ilość pieniędzy:</label>
-        <input
-          class="form-control"
-          id="currencyAmount"
-          type="text"
-          [(ngModel)]="moneyAmount"
-          [disabled]="loading"
-          [mask]="'^[0-9]*(\.[0-9]{0,2})?$'"
-        >
-      </div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="!loading; else loadingScreen">
-  <ul class="list-group my-3">
-    <li class="list-group-item">
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Wyszukaj..."
-          [(ngModel)]="searchPhrase"
-          (input)="searchPhraseChange()"
-        >
-    </li>
-    <li class="list-group-item" *ngIf="!filteredRates.length">
-      Brak elementów spełniających kryteria wyszukiwania.
-    </li>
-    <li class="list-group-item" *ngFor="let rate of filteredRates">
-      <div class="row">
-        <div class="col">
-          <div class="d-flex align-items-center">
-            <img src="assets/blank.gif" class="flag flag-{{ rate.currency[0].country.code }} mr-2"> {{ rate.currency[0].code }} ({{ rate.currency[0].name }})
-          </div>
-        </div>
-        <div class="col text-right">
-            {{ (moneyAmount * rate.value).toFixed(2) }} {{ rate.currency[0].code }}
-        </div>
-        <div class="col-1 text-center">=</div>
-        <div class="col text-left">
-          {{ moneyAmount }} {{ selectedBaseCurrency[0].code }}
-        </div>
-        <div class="col">
-          <div class="d-flex justify-content-end align-items-center">
-          {{ selectedBaseCurrency[0].code }} ({{ selectedBaseCurrency[0].name }}) <img src="assets/blank.gif" class="flag flag-{{ selectedBaseCurrency[0].country.code }} ml-2">
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-
-<ng-template #loadingScreen>
-  <div class="text-center m-5">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-    <span class="d-block">Wczytywanie danych...</span>
-  </div>
-</ng-template>
+<app-converter-form
+    [loading]="loading"
+    [moneyAmount]="moneyAmount"
+    (loadingChange)="loadingChange($event)"
+    (selectedBaseCurrencyChange)="selectedBaseCurrencyChange($event)"
+    (moneyAmountChange)="moneyAmountChange($event)"
+></app-converter-form>
+<app-converter-result
+    [loading]="loading"
+    [selectedBaseCurrency]="selectedBaseCurrency"
+    [moneyAmount]="moneyAmount"
+    (loadingChange)="loadingChange($event)"
+></app-converter-result>

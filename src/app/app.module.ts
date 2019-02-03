@@ -9,6 +9,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaskDirective } from './mask.directive';
+import { ConverterFormComponent } from './converter-form/converter-form.component';
+import { ConverterResultComponent } from './converter-result/converter-result.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MaskDirective } from './mask.directive';
     MainPageComponent,
     AboutPageComponent,
     NavbarComponent,
-    MaskDirective
+    MaskDirective,
+    ConverterFormComponent,
+    ConverterResultComponent
   ],
   imports: [
     BrowserModule,

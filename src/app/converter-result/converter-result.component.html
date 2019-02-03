@@ -1,0 +1,48 @@
+<div *ngIf="!loading; else spinner">
+  <ul class="list-group my-3">
+    <li class="list-group-item">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Wyszukaj..."
+        [(ngModel)]="searchPhrase"
+        (input)="searchPhraseChange()"
+      >
+    </li>
+    <li class="list-group-item" *ngIf="!filteredRates.length">
+      Brak elementów spełniających kryteria wyszukiwania.
+    </li>
+    <li class="list-group-item" *ngFor="let rate of filteredRates">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex align-items-center">
+            <img class="flag flag-{{ rate.currency[0].country.code }} mr-2" src="assets/blank.gif">
+            {{ rate.currency[0].code }} ({{ rate.currency[0].name }})
+          </div>
+        </div>
+        <div class="col text-right">
+          {{ (moneyAmount * rate.value).toFixed(2) }} {{ rate.currency[0].code }}
+        </div>
+        <div class="col-1 text-center">=</div>
+        <div class="col text-left">
+          {{ moneyAmount }} {{ selectedBaseCurrency[0].code }}
+        </div>
+        <div class="col">
+          <div class="d-flex justify-content-end align-items-center">
+            {{ selectedBaseCurrency[0].code }} ({{ selectedBaseCurrency[0].name }})
+            <img class="flag flag-{{ selectedBaseCurrency[0].country.code }} ml-2" src="assets/blank.gif">
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #spinner>
+  <div class="text-center m-5">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Wczytywanie...</span>
+    </div>
+    <span class="d-block">Wczytywanie danych...</span>
+  </div>
+</ng-template>
