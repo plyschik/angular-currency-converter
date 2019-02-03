@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { CurrencyService } from './currency.service';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class APIService {
   ) {}
 
   getRates(currencyCode: string): Observable<any> {
-    return this.http.get(`https://api.exchangeratesapi.io/latest?base=${currencyCode}&symbols=${this.getSymbols(currencyCode)}`);
+    let minDelay = 1000;
+    let maxDelay = 2000;
+
+    return this.http.get(`https://api.exchangeratesapi.io/latest?base=${currencyCode}&symbols=${this.getSymbols(currencyCode)}`).pipe(delay(Math.random() * (maxDelay - minDelay) + minDelay));
   }
 
   getSymbols(currencyCode: string): string {

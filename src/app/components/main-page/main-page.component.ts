@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrencyService } from '../currency.service';
-import { APIService } from '../api.service';
-import { LocalStorageService } from '../localstorage.service';
-import { Currency } from '../models/Currency';
+import { LocalStorageService } from '../../services/localstorage.service';
+import { Currency } from '../../models/Currency';
 
 @Component({
   selector: 'app-main-page',
@@ -15,8 +13,6 @@ export class MainPageComponent implements OnInit {
   moneyAmount: string;
   
   constructor(
-    private currencyService: CurrencyService,
-    private APIService: APIService,
     private localStorageService: LocalStorageService
   ) {}
 

@@ -5,12 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { AboutPageComponent } from './about-page/about-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MaskDirective } from './mask.directive';
-import { ConverterFormComponent } from './converter-form/converter-form.component';
-import { ConverterResultComponent } from './converter-result/converter-result.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ConverterFormComponent } from './components/converter-form/converter-form.component';
+import { ConverterResultComponent } from './components/converter-result/converter-result.component';
+import { MaskDirective } from './directives/mask.directive';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,9 @@ import { ConverterResultComponent } from './converter-result/converter-result.co
     MainPageComponent,
     AboutPageComponent,
     NavbarComponent,
-    MaskDirective,
     ConverterFormComponent,
-    ConverterResultComponent
+    ConverterResultComponent,
+    MaskDirective
   ],
   imports: [
     BrowserModule,
@@ -31,4 +31,4 @@ import { ConverterResultComponent } from './converter-result/converter-result.co
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { CurrencyService } from '../currency.service';
-import { APIService } from '../api.service';
-import { Currency } from '../models/Currency';
-import { Rate } from '../models/Rate';
+import { CurrencyService } from '../../services/currency.service';
+import { APIService } from '../../services/api.service';
+import { Currency } from '../../models/Currency';
+import { Rate } from '../../models/Rate';
 
 @Component({
   selector: 'app-converter-result',

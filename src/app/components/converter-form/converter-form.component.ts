@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CurrencyService } from '../currency.service';
-import { LocalStorageService } from '../localstorage.service';
-import { Currency } from '../models/Currency';
+import { CurrencyService } from '../../services/currency.service';
+import { LocalStorageService } from '../../services/localstorage.service';
+import { Currency } from '../../models/Currency';
 
 @Component({
   selector: 'app-converter-form',
