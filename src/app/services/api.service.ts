@@ -14,8 +14,8 @@ export class APIService {
   ) {}
 
   getRates(currencyCode: string): Observable<any> {
-    let minDelay = 1000;
-    let maxDelay = 2000;
+    let minDelay = 500;
+    let maxDelay = 1000;
 
     return this.http.get(`https://api.exchangeratesapi.io/latest?base=${currencyCode}&symbols=${this.getSymbols(currencyCode)}`).pipe(delay(Math.random() * (maxDelay - minDelay) + minDelay));
   }
