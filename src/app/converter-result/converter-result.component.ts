@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { CurrencyService } from '../currency.service';
 import { APIService } from '../api.service';
 import { Currency } from '../models/Currency';
@@ -9,14 +9,14 @@ import { Rate } from '../models/Rate';
   templateUrl: './converter-result.component.html',
   styleUrls: ['./converter-result.component.css']
 })
-export class ConverterResultComponent implements OnInit {
+export class ConverterResultComponent {
   @Input() loading: boolean;
   @Output() loadingChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() selectedBaseCurrency: Currency
   @Input() moneyAmount: string;
 
-  rates: Rate[] = [];
-  filteredRates: Rate[] = [];
+  rates: Rate[];
+  filteredRates: Rate[];
   searchPhrase: string;
 
   constructor(
@@ -24,9 +24,7 @@ export class ConverterResultComponent implements OnInit {
     private APIService: APIService
   ) {}
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('selectedBaseCurrency')) {
       this.getRates();
     }

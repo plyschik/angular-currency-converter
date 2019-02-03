@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyService } from '../currency.service';
 import { APIService } from '../api.service';
+import { LocalStorageService } from '../localstorage.service';
 import { Currency } from '../models/Currency';
 
 @Component({
@@ -11,14 +12,17 @@ import { Currency } from '../models/Currency';
 export class MainPageComponent implements OnInit {
   loading: boolean = false;
   selectedBaseCurrency: Currency;
-  moneyAmount: string = '1000';
+  moneyAmount: string;
   
   constructor(
     private currencyService: CurrencyService,
-    private APIService: APIService
+    private APIService: APIService,
+    private localStorageService: LocalStorageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.moneyAmount = this.localStorageService.getMoneyAmount();
+  }
 
   loadingChange(state: boolean): void {
     this.loading = state;

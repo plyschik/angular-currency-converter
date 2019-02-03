@@ -9,7 +9,7 @@
         (input)="searchPhraseChange()"
       >
     </li>
-    <li class="list-group-item" *ngIf="!filteredRates.length > 0">
+    <li class="list-group-item" *ngIf="!filteredRates?.length > 0">
       Brak elementów spełniających kryteria wyszukiwania.
     </li>
     <li class="list-group-item" *ngFor="let rate of filteredRates">

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CurrencyService } from '../currency.service';
+import { LocalStorageService } from '../localstorage.service';
 import { Currency } from '../models/Currency';
 
 @Component({
@@ -15,21 +16,27 @@ export class ConverterFormComponent implements OnInit {
   @Output() moneyAmountChange: EventEmitter<string> = new EventEmitter<string>();
 
   currencies: Currency[];
-  baseCurrency: string = 'PLN';
+  baseCurrency: string;
 
-  constructor(private currencyService: CurrencyService) {}
+  constructor(
+    private currencyService: CurrencyService,
+    private localstorageService: LocalStorageService  
+  ) {}
 
   ngOnInit(): void {
+    this.baseCurrency = this.localstorageService.getBaseCurrency();
     this.currencies = this.currencyService.getCurrencies();
     this.selectedBaseCurrencyChange.emit(this.currencyService.getCurrencyByCode(this.baseCurrency));
   }
 
   changeBaseCurrency(): void {
+    this.localstorageService.setBaseCurrency(this.baseCurrency);
     this.selectedBaseCurrencyChange.emit(this.currencyService.getCurrencyByCode(this.baseCurrency));
     this.loadingChange.emit(true);
   }
 
   moneyAmountInputChange(): void {
+    this.localstorageService.setMoneyAmount(this.moneyAmount);
     this.moneyAmountChange.emit(this.moneyAmount);
   }
 }
