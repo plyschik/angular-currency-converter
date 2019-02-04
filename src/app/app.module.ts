@@ -10,7 +10,8 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ConverterFormComponent } from './components/converter-form/converter-form.component';
 import { ConverterResultComponent } from './components/converter-result/converter-result.component';
-import { MaskDirective } from './directives/mask.directive';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import { NullMoneyFormatPipe } from './pipes/null-money-format.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MaskDirective } from './directives/mask.directive';
     NavbarComponent,
     ConverterFormComponent,
     ConverterResultComponent,
-    MaskDirective
+    NumbersOnlyDirective,
+    NullMoneyFormatPipe
   ],
   imports: [
     BrowserModule,

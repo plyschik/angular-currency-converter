@@ -30,7 +30,7 @@
         </div>
         <div class="col-1 text-center">=</div>
         <div class="col text-center text-md-left">
-          {{ moneyAmount }}
+          {{ moneyAmount | nullMoneyFormat}}
           <div class="w-100 d-sm-none"></div>
           {{ selectedBaseCurrency[0].code }}
         </div>

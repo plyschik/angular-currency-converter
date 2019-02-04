@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
 import { LocalStorageService } from '../../services/localstorage.service';
 import { Currency } from '../../models/Currency';
+import { ValidatorFn, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-converter-form',
@@ -18,10 +19,18 @@ export class ConverterFormComponent implements OnInit {
   currencies: Currency[];
   baseCurrency: string;
 
+  validateMoneyAmount: ValidatorFn;
+
   constructor(
     private currencyService: CurrencyService,
     private localstorageService: LocalStorageService  
-  ) {}
+  ) {
+    this.validateMoneyAmount = (control: FormControl) => {
+      console.log(control);
+      
+      return null;
+    }
+  }
 
   ngOnInit(): void {
     this.baseCurrency = this.localstorageService.getBaseCurrency();
