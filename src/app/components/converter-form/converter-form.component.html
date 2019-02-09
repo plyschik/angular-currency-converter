@@ -23,13 +23,11 @@
         <input
           class="form-control"
           id="currency-amount"
-          type="number"
+          type="text"
           [(ngModel)]="moneyAmount"
           (ngModelChange)="moneyAmountInputChange()"
           [disabled]="loading"
           numbersOnly="true"
-          minNumber="1"
-          maxNumber="999999"
         >
       </div>
     </div>

@@ -1,50 +1,34 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { min } from 'rxjs/operators';
 
 @Directive({
   selector: '[numbersOnly]'
 })
 export class NumbersOnlyDirective {
-  @Input() numbersOnly: boolean;
-  @Input() minNumber: number;
-  @Input() maxNumber: number;
+  private regex: RegExp = new RegExp(/^[1-9]{1}[0-9]{0,5}(\.{1}[0-9]{0,2})?$/);
   
   constructor(private element: ElementRef) {}
 
   @HostListener('keydown', ['$event'])
-  onInput(event) {
-    let e = <KeyboardEvent> event;
+  onKeyDown(event: KeyboardEvent) {
+    if (
+      [8, 9, 13, 27, 46].indexOf(event.keyCode) !== -1 || // Allow: 8 - backspace, 9 - tab, 13 - enter, 27 - escape, 46 - delete 
+      (event.keyCode === 65 && event.ctrlKey === true) || // Allow: Ctrl+A
+      (event.keyCode === 67 && event.ctrlKey === true) || // Allow: Ctrl+C
+      (event.keyCode === 86 && event.ctrlKey === true) || // Allow: Ctrl+V
+      (event.keyCode === 88 && event.ctrlKey === true) || // Allow: Ctrl+X
+      (event.keyCode === 65 && event.metaKey === true) || // Cmd+A (Mac)
+      (event.keyCode === 67 && event.metaKey === true) || // Cmd+C (Mac)
+      (event.keyCode === 86 && event.metaKey === true) || // Cmd+V (Mac)
+      (event.keyCode === 88 && event.metaKey === true) || // Cmd+X (Mac)
+      (event.keyCode >= 35 && event.keyCode <= 37 || event.keyCode == 39) // Home - 36, End - 35, Left - 37, Right - 39
+    ) {
+      return;
+    }
 
-    if (this.numbersOnly) {
-      let next: string = this.element.nativeElement.value.concat(e.key);
-      
-      if (
-        [46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
-        // Allow: Ctrl+A
-        (e.keyCode === 65 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: Ctrl+C
-        (e.keyCode === 67 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: Ctrl+V
-        (e.keyCode === 86 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: Ctrl+X
-        (e.keyCode === 88 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: home, end, left, right
-        (e.keyCode >= 35 && e.keyCode <= 40)
-      ) {
-        return;
-      }
-
-      if (+next < this.minNumber) {
-        e.preventDefault();
-      }
-
-      if (+next > this.maxNumber) {
-        e.preventDefault();
-      }
-
-      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-        e.preventDefault();
-      }
+    let current: string = this.element.nativeElement.value;
+    let next: string = current.concat(event.key);
+    if (next && !String(next).match(this.regex)) {
+      event.preventDefault();
     }
   }
 }
