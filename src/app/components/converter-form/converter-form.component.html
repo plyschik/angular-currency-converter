@@ -27,7 +27,8 @@
           [(ngModel)]="moneyAmount"
           (ngModelChange)="moneyAmountInputChange()"
           [disabled]="loading"
-          numbersOnly="true"
+          currencyMask
+          [maxlength]="10"
         >
       </div>
     </div>

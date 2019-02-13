@@ -1,13 +1,13 @@
 <app-converter-form
     [loading]="loading"
-    [moneyAmount]="moneyAmount"
     (loadingChange)="loadingChange($event)"
     (selectedBaseCurrencyChange)="selectedBaseCurrencyChange($event)"
+    [moneyAmount]="moneyAmount"
     (moneyAmountChange)="moneyAmountChange($event)"
 ></app-converter-form>
 <app-converter-result
     [loading]="loading"
+    (loadingChange)="loadingChange($event)"
     [selectedBaseCurrency]="selectedBaseCurrency"
     [moneyAmount]="moneyAmount"
-    (loadingChange)="loadingChange($event)"
 ></app-converter-result>

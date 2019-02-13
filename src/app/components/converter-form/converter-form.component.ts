@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
 import { LocalStorageService } from '../../services/localstorage.service';
 import { Currency } from '../../models/Currency';
-import { ValidatorFn, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-converter-form',
@@ -19,33 +18,25 @@ export class ConverterFormComponent implements OnInit {
   currencies: Currency[];
   baseCurrency: string;
 
-  validateMoneyAmount: ValidatorFn;
-
   constructor(
     private currencyService: CurrencyService,
-    private localstorageService: LocalStorageService  
-  ) {
-    this.validateMoneyAmount = (control: FormControl) => {
-      console.log(control);
-      
-      return null;
-    }
-  }
+    private localStorageService: LocalStorageService  
+  ) {}
 
   ngOnInit(): void {
-    this.baseCurrency = this.localstorageService.getBaseCurrency();
     this.currencies = this.currencyService.getCurrencies();
+    this.baseCurrency = this.localStorageService.getBaseCurrency();
     this.selectedBaseCurrencyChange.emit(this.currencyService.getCurrencyByCode(this.baseCurrency));
   }
 
   changeBaseCurrency(): void {
-    this.localstorageService.setBaseCurrency(this.baseCurrency);
     this.selectedBaseCurrencyChange.emit(this.currencyService.getCurrencyByCode(this.baseCurrency));
     this.loadingChange.emit(true);
+    this.localStorageService.setBaseCurrency(this.baseCurrency);
   }
 
   moneyAmountInputChange(): void {
-    this.localstorageService.setMoneyAmount(this.moneyAmount);
     this.moneyAmountChange.emit(this.moneyAmount);
+    this.localStorageService.setMoneyAmount(this.moneyAmount);
   }
 }

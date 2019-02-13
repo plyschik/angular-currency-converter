@@ -15,10 +15,10 @@ export class ConverterResultComponent {
   @Input() selectedBaseCurrency: Currency
   @Input() moneyAmount: string;
 
+  searchPhrase: string;
   rates: Rate[];
   filteredRates: Rate[];
-  searchPhrase: string;
-
+  
   constructor(
     private currencyService: CurrencyService,
     private APIService: APIService

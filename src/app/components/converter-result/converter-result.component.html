@@ -24,13 +24,13 @@
           </div>
         </div>
         <div class="col text-center text-md-right">
-          {{ (moneyAmount * rate.value).toFixed(2) }}
+          {{ (moneyAmount * rate.value) | number:'1.2-2':'en' }}
           <div class="w-100 d-sm-none"></div>
           {{ rate.currency[0].code }}
         </div>
         <div class="col-1 text-center">=</div>
         <div class="col text-center text-md-left">
-          {{ moneyAmount | nullMoneyFormat}}
+          {{ moneyAmount | number:'1.2-2':'en' }}
           <div class="w-100 d-sm-none"></div>
           {{ selectedBaseCurrency[0].code }}
         </div>
